@@ -1,7 +1,7 @@
 package com.lira.mscarrinho.application.api;
 
 import com.lira.mscarrinho.application.api.request.CarrinhoRequest;
-import com.lira.mscarrinho.application.api.response.CarrinhoRespponse;
+import com.lira.mscarrinho.application.api.response.CarrinhoResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,5 +12,6 @@ public interface CarrinhoAPI {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    CarrinhoRespponse postCarrinho(@Valid @RequestBody CarrinhoRequest carrinhoRequest);
+    CarrinhoResponse postCarrinho(@Valid @RequestBody CarrinhoRequest carrinhoRequest);
+
 }
