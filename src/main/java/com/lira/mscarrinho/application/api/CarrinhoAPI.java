@@ -1,6 +1,7 @@
 package com.lira.mscarrinho.application.api;
 
 import com.lira.mscarrinho.application.api.request.CarrinhoRequest;
+import com.lira.mscarrinho.application.api.response.CarrinhoDetalhadoResponse;
 import com.lira.mscarrinho.application.api.response.CarrinhoResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -14,4 +15,7 @@ public interface CarrinhoAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     CarrinhoResponse postCarrinho(@Valid @RequestBody CarrinhoRequest carrinhoRequest);
 
+    @GetMapping(value = "/{idCarrinho}")
+    @ResponseStatus(code = HttpStatus.OK)
+    CarrinhoDetalhadoResponse getCarrinhoById(@PathVariable Long idCarrinho);
 }

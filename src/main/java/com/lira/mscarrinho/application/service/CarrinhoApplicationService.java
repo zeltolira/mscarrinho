@@ -1,6 +1,7 @@
 package com.lira.mscarrinho.application.service;
 
 import com.lira.mscarrinho.application.api.request.CarrinhoRequest;
+import com.lira.mscarrinho.application.api.response.CarrinhoDetalhadoResponse;
 import com.lira.mscarrinho.application.api.response.CarrinhoResponse;
 import com.lira.mscarrinho.domain.Carrinho;
 import com.lira.mscarrinho.repository.CarrinhoRepository;
@@ -20,5 +21,12 @@ public class CarrinhoApplicationService implements CarrinhoService {
         Carrinho carrinho = carrinhoRepository.saveCarrinho(new Carrinho(carrinhoRequest));
         log.info("[finish] CarrinhoApplicationService - postCarrinho");
         return new CarrinhoResponse(carrinho);
+    }
+    @Override
+    public CarrinhoDetalhadoResponse getCarrinhoById(Long idCarrinho) {
+        log.info("[start] CarrinhoApplicationService - getCarrinhoById");
+        Carrinho carrinho = carrinhoRepository.getCarrinhoById(idCarrinho);
+        log.info("[finish] CarrinhoApplicationService - getCarrinhoById");
+        return new CarrinhoDetalhadoResponse(carrinho);
     }
 }

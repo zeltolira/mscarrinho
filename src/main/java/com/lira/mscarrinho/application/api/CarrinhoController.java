@@ -1,6 +1,7 @@
 package com.lira.mscarrinho.application.api;
 
 import com.lira.mscarrinho.application.api.request.CarrinhoRequest;
+import com.lira.mscarrinho.application.api.response.CarrinhoDetalhadoResponse;
 import com.lira.mscarrinho.application.api.response.CarrinhoResponse;
 import com.lira.mscarrinho.application.service.CarrinhoService;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,12 @@ public class CarrinhoController implements CarrinhoAPI {
         CarrinhoResponse carrinho = carrinhoService.postCarrinho(carrinhoRequest);
         log.info("[finish] CarrinhoController - postCarrinho");
         return carrinho;
+    }
+    @Override
+    public CarrinhoDetalhadoResponse getCarrinhoById(Long idCarrinho) {
+        log.info("[start] CarrinhoController - getCarrinhoById");
+        CarrinhoDetalhadoResponse carrinhoDetalhado = carrinhoService.getCarrinhoById(idCarrinho);
+        log.info("[finish] CarrinhoController - getCarrinhoById");
+        return carrinhoDetalhado;
     }
 }
