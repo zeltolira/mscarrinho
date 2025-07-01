@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 
+import java.util.UUID;
+
 @Controller
 @Log4j2
 @RequiredArgsConstructor
@@ -28,5 +30,12 @@ public class CarrinhoController implements CarrinhoAPI {
         CarrinhoDetalhadoResponse carrinhoDetalhado = carrinhoService.getCarrinhoById(idCarrinho);
         log.info("[finish] CarrinhoController - getCarrinhoById");
         return carrinhoDetalhado;
+    }
+
+    @Override
+    public void deleteCarrinhoById(Long idCarrinho) {
+        log.info("[start] CarrinhoController - deleleCarrinhoById");
+        carrinhoService.deleteCarrinhoById(idCarrinho);
+        log.info("[finish] CarrinhoController - deleleCarrinhoById");
     }
 }

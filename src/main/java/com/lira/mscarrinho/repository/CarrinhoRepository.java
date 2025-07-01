@@ -6,4 +6,5 @@ public interface CarrinhoRepository {
 
     Carrinho saveCarrinho(Carrinho carrinho);
     Carrinho getCarrinhoById(Long idCarrinho);
+    void deleteCarrinho(Carrinho carrinho);
 }

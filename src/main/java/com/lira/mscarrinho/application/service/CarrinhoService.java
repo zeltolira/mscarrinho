@@ -7,4 +7,5 @@ import com.lira.mscarrinho.application.api.response.CarrinhoResponse;
 public interface CarrinhoService {
     CarrinhoResponse postCarrinho(CarrinhoRequest carrinhoRequest);
     CarrinhoDetalhadoResponse getCarrinhoById(Long idCarrinho);
+    void deleteCarrinhoById(Long idCarrinho);
 }

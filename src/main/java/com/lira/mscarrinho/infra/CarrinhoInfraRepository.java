@@ -30,4 +30,10 @@ public class CarrinhoInfraRepository implements CarrinhoRepository {
         log.info("[finish] CarrinhoInfraRepository - carrinhogetCarrinhoById");
         return carrinho;
     }
+    @Override
+    public void deleteCarrinho(Carrinho carrinho) {
+        log.info("[start] CarrinhoInfraRepository - delete");
+        carrinhoSpringDataJPARepository.delete(carrinho);
+        log.info("[finish] CarrinhoInfraRepository - delete");
+    }
 }
