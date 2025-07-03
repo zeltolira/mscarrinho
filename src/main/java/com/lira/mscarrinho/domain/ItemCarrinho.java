@@ -1,6 +1,7 @@
 package com.lira.mscarrinho.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lira.mscarrinho.application.api.requestItem.ItemCarrinhoRequest;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,8 +21,8 @@ public class ItemCarrinho {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idItemCarrinho;
 
-    @Column(name = "id_produto", nullable = false)
-    private UUID idProduto;
+    @Transient
+    private Produto produto;
 
     @ManyToOne
     @JoinColumn(name = "carrinho_id", nullable = false)
@@ -32,4 +33,15 @@ public class ItemCarrinho {
     private BigDecimal subtotal;
     private LocalDateTime dataHoraCriacao;
     private LocalDateTime dataHoraUltimaAlteracao;
+
+    public ItemCarrinho(Produto produto, Carrinho carrinho, ItemCarrinhoRequest itemCarrinhoRequest) {
+        this.produto = produto;
+        this.carrinho = carrinho;
+        this.setQuantidade(itemCarrinhoRequest.getQuantidade());
+        this.dataHoraCriacao = LocalDateTime.now();
+    }
+
+    public void definirSubtotal(BigDecimal subtotaComDesconto) {
+        this.subtotal = subtotal;
+    }
 }
