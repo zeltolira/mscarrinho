@@ -27,8 +27,7 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
     @Override
     public ItemCarrinhoResponse postItemCarrinho(ItemCarrinhoRequest itemCarrinhoRequest) {
         log.info("[start] ItemCarrinhoApplicationService - postItemCarrinho");
-        Produto produto = produtoClient.getProdutoPorId(itemCarrinhoRequest.getIdProduto());
-        Carrinho carrinho = carrinhoRepository.getCarrinhoById(itemCarrinhoRequest.getIdCarrinho());
+        Produto produto = produtoClient.buscarProdutoPorId(itemCarrinhoRequest.getIdProduto());        Carrinho carrinho = carrinhoRepository.getCarrinhoById(itemCarrinhoRequest.getIdCarrinho());
         ItemCarrinho itemCarrinho = new ItemCarrinho(produto, carrinho, itemCarrinhoRequest);
         BigDecimal subtotalComDesconto = calculadoraDeDesconto.calcular(
                 produto.getPromocao(),

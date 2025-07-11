@@ -23,7 +23,7 @@ public class ItemCarrinhoInfraRepository implements ItemCarrinhoRepository {
     @Override
     public ItemCarrinho salvarItemCarrinho(ItemCarrinho itemCarrinho) {
         log.info("[start] ItemCarrinhoInfraRepository - salvarItemCarrinho");
-        Produto produto = produtoClient.getProdutoById(itemCarrinho.getProduto().getIdProduto());
+        Produto produto = produtoClient.buscarProdutoPorId(itemCarrinho.getProduto().getIdProduto());
         if (produto == null){
             throw APIException.build(HttpStatus.NOT_FOUND, "Produto não encontrado");
         }

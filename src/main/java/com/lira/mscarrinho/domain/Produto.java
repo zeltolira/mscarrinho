@@ -13,4 +13,11 @@ public class Produto {
     private StatusProduto statusProduto;
     private TipoPromocao promocao;
 
+    public Produto(UUID idProduto, String nomeProduto, BigDecimal precoProduto, StatusProduto statusProduto, TipoPromocao promocao) {
+        this.idProduto = idProduto;
+        this.nomeProduto = nomeProduto;
+        this.precoProduto = precoProduto;
+        this.statusProduto = statusProduto;
+        this.promocao = promocao;
+    }
 }

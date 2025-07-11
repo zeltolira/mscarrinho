@@ -1,5 +1,6 @@
 package com.lira.mscarrinho.client;
 
+import com.lira.mscarrinho.client.reponse.ProdutoResponse;
 import com.lira.mscarrinho.domain.Produto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,26 +14,27 @@ public class ProdutoClient {
 
     private final WebClient.Builder builder;
 
-    public Produto getProdutoPorId(UUID idProduto){
-        return builder
+
+    public Produto buscarProdutoPorId(UUID idProduto) {
+        ProdutoResponse response = builder
                 .baseUrl("http://produto-service")
                 .build()
                 .get()
                 .uri("/v1/produto/{id}", idProduto)
                 .retrieve()
-                .bodyToMono(Produto.class)
+                .bodyToMono(ProdutoResponse.class)
                 .block();
-    }
 
+        if (response == null) {
+            throw new RuntimeException("Produto não encontrado");
+        }
 
-    public Produto getProdutoById(UUID idProduto) {
-        return builder
-                .baseUrl("http://produto-service")
-                .build()
-                .get()
-                .uri("/v1/produto/{id}", idProduto)
-                .retrieve()
-                .bodyToMono(Produto.class)
-                .block();
+        return new Produto(
+                response.getIdProduto(),
+                response.getNomeProduto(),
+                response.getPrecoProduto(),
+                response.getStatusProduto(),
+                response.getPromocao()
+        );
     }
 }
